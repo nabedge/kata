@@ -2,6 +2,8 @@ package kata.ex01;
 
 import kata.ex01.model.HighwayDrive;
 
+import java.util.stream.LongStream;
+
 /**
  * @author kawasima
  */
@@ -23,9 +25,14 @@ public class DiscountServiceImpl implements DiscountService {
         long etc20Rate = new DiscountEtc20(drive).calc();
 
         // 最大値を取る
-        return Math.max(
-                Math.max(midnightRate, holidayRate),
-                Math.max(morningAndNightRate, etc20Rate)
-        );
+        return LongStream
+                .of(
+                    midnightRate,
+                    holidayRate,
+                    morningAndNightRate,
+                    etc20Rate
+                )
+                .max()
+                .orElse(0L);
     }
 }
