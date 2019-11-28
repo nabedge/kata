@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
+import static kata.ex01.model.RouteType.KENOH;
 import static kata.ex01.model.RouteType.RURAL;
 import static kata.ex01.model.VehicleFamily.STANDARD;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,6 +50,18 @@ public class DiscountServiceTest {
         drive.setRouteType(RURAL);
 
         assertThat(discountService.calc(drive)).isEqualTo(30);
+    }
+
+    @Test
+    public void test_ETC20割引() {
+        HighwayDrive drive = new HighwayDrive();
+        drive.setEnteredAt(LocalDateTime.of(2019, 11, 28, 12, 0,0 ));
+        drive.setExitedAt(LocalDateTime.of(2019, 11, 28, 13, 0,0 ));
+        drive.setDriver(driver(1));
+        drive.setVehicleFamily(STANDARD);
+        drive.setRouteType(KENOH);
+
+        assertThat(discountService.calc(drive)).isEqualTo(20);
     }
 
 }

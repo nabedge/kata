@@ -10,4 +10,6 @@ public enum RouteType {
     RURAL,
     /** 都市部 */
     URBAN,
+    /** 圏央道 */
+    KENOH,
 }
